@@ -102,11 +102,57 @@ def depthFirstSearch(problem):
     # "*** YOUR CODE HERE ***"
     """
     
-    util.raiseNotDefined()
+    myStack = util.Stack()
+    myStack.push((problem.getStartState(), []))
+    visitedNodes = []
+    
+    while not myStack.isEmpty():
+        topStack = myStack.pop()
+        
+        crtNode = topStack[0]
+        movesList = topStack[1]
+        
+        visitedNodes.append(crtNode)
+        
+        if problem.isGoalState(crtNode):
+            return movesList
+    
+        for crtNeighbour in problem.getSuccessors(crtNode):
+            nPos = crtNeighbour[0]
+            nAction = crtNeighbour[1]
+            
+            if nPos not in visitedNodes:
+                myStack.push((nPos, movesList + [nAction]))
+    
+    # util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
+    """Search the shallowest nodes in the search tree first."""
+    "*** YOUR CODE HERE ***"
+    
+    myQueue = util.Queue()
+    myQueue.push((problem.getStartState(), []))
+    visitedNodes = []
+    
+    while not myQueue.isEmpty():
+        topStack = myQueue.pop()
+        
+        crtNode = topStack[0]
+        movesList = topStack[1]
+        
+        visitedNodes.append(crtNode)
+        
+        if problem.isGoalState(crtNode):
+            return movesList
+    
+        for crtNeighbour in problem.getSuccessors(crtNode):
+            nPos = crtNeighbour[0]
+            nAction = crtNeighbour[1]
+            
+            if nPos not in visitedNodes:
+                myQueue.push((nPos, movesList + [nAction]))
                 
-    util.raiseNotDefined()
+    # util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
